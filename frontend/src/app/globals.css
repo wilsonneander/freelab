@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #FF9F43;
+  --secondary: #6C5CE7;
+  --text-main: #2D3436;
+  --text-muted: #8395A7;
+
+  /* Gradients */
+  --bg-warm: linear-gradient(108deg, #514A9D 0%, #C66D5D 30%, #EFA569 70%, #F5C677 100%);
+
+  /* Glass */
+  --glass-bg: rgba(255, 245, 240, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+body {
+  background: var(--bg-warm);
+  color: var(--text-main);
+}
+
+/* Custom Utilities for Glassmorphism */
+@utility glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  --webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Scrollbar specific */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
