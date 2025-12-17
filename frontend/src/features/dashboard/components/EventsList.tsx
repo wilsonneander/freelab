@@ -6,30 +6,38 @@ interface EventsListProps {
 }
 
 export function EventsList({ events }: EventsListProps) {
-    // Helper to get color classes based on event type/props (simplified mapping)
+    // Helper to get color classes
     const getEventStyle = (index: number) => {
-        // Just cycling styles for demo purposes, in real app would depend on type
         const styles = [
-            'bg-[#FFE8D6] border-l-4 border-[#FF9F43]',
-            'bg-[#FFF8E1] border-l-4 border-[#FFC107]',
-            'bg-white border-l-4 border-gray-200'
+            'bg-[#EBA355] text-white',
+            'bg-[#EBA355] text-white/90',
+            'bg-[#EBA355] text-white/80'
         ];
-        return styles[index % styles.length];
+        return styles[index % styles.length]; // Using orange theme from image
     };
 
     return (
-        <div className="flex flex-col">
-            <h3 className="text-sm font-medium text-[#2D3436] mb-4">Eventos</h3>
-            <div className="flex flex-col gap-3 mb-6">
+        <div className="card-base h-full !bg-[#EFE5DC] overflow-hidden border border-white">
+            <div className="flex justify-between items-center mb-3 shrink-0">
+                <h3 className="text-sm font-bold text-[#2D3436]">Eventos</h3>
+            </div>
+            <div className="flex flex-col gap-3 overflow-y-auto no-scrollbar pr-1 ">
                 {events.map((evt, i) => (
-                    <div key={evt.id} className={cn("p-3 rounded-2xl flex items-center gap-3", getEventStyle(i))}>
-                        <div className="flex flex-col items-center justify-center bg-white/50 p-2 rounded-xl min-w-[45px]">
-                            <span className="font-bold text-base text-[#2D3436]">{evt.day}</span>
-                            <span className="text-[10px] uppercase text-gray-500">{evt.weekday}</span>
+                    <div key={evt.id} className="p-3 rounded-2xl flex items-center gap-3 bg-white/90 border border-white/60 shadow-sm shrink-0">
+                        {/* The image shows colored cards inside. Let's try to match the "Orange" look from the uploaded image 1 */}
+                        <div className={cn("flex flex-col items-center justify-center p-2 rounded-xl min-w-[50px] aspect-square",
+                            i === 0 ? "bg-[#EBA355] text-white" :
+                                i === 1 ? "bg-[#EBA355]/90 text-white" : "bg-[#EBA355]/80 text-white"
+                        )}>
+                            <span className="font-bold text-lg leading-none">{evt.day}</span>
+                            <span className="text-[9px] uppercase font-medium">{evt.weekday}</span>
                         </div>
-                        <div>
-                            <h4 className="text-sm font-semibold m-0">{evt.title}</h4>
-                            <small className="text-[10px] text-gray-500 block">{evt.timeRange}</small>
+                        <div className="min-w-0">
+                            <h4 className="text-sm font-bold text-[#2D3436] truncate">{evt.title}</h4>
+                            <small className="text-[10px] text-gray-500 block truncate">{evt.client}</small>
+                            <div className="flex items-center gap-1 mt-0.5">
+                                <span className="text-[10px] text-gray-400">{evt.timeRange}</span>
+                            </div>
                         </div>
                     </div>
                 ))}

@@ -10,15 +10,15 @@ interface RevenueChartProps {
 
 export function RevenueChart({ data }: RevenueChartProps) {
     return (
-        <div className="bg-white/40 rounded-3xl p-6 backdrop-blur-sm">
-            <div className="flex justify-between mb-4">
-                <h3 className="text-lg font-semibold text-[#2D3436]">Claims Over the Years</h3>
+        <div className="card-base h-full !bg-white/40 !backdrop-blur-sm border-none">
+            <div className="flex justify-between mb-2 shrink-0">
+                <h3 className="text-base font-semibold text-[#2D3436]">Claims Over the Years</h3>
                 <div className="flex gap-3 text-xs items-center">
                     <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#FF7675]"></span> Approved</span>
                     <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#6C5CE7]"></span> Submitted</span>
                 </div>
             </div>
-            <div className="h-[200px] w-full">
+            <div className="flex-1 w-full min-h-0">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data}>
                         <defs>

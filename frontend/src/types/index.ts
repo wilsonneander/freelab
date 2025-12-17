@@ -35,3 +35,13 @@ export interface ChartDataPoint {
     name: string;
     value: number;
 }
+
+export interface StatCardProps {
+    title: string;
+    icon: React.ElementType;
+    value: string;
+    subtitle: string;
+    tags?: string[];
+    variant?: 'white' | 'orange';
+    iconColorClass?: string;
+}

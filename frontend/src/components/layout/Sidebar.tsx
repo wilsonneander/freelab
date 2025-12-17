@@ -38,14 +38,15 @@ export function Sidebar() {
     return (
         <aside
             className={cn(
-                "relative flex flex-col h-full gap-8 p-6 transition-all duration-300 ease-in-out shrink-0 m-6 rounded-[32px] border border-white/60 shadow-[0_10px_40px_rgba(0,0,0,0.05)] bg-[#FFF5F0]/55 backdrop-blur-[20px]",
-                isCollapsed ? "w-[88px] items-center px-3" : "w-[280px]"
+                "relative flex flex-col gap-6 py-6 transition-all duration-300 ease-in-out shrink-0 m-6 rounded-[32px] border border-white/60 shadow-[0_10px_40px_rgba(0,0,0,0.05)] bg-[#FFF5F0]/55 backdrop-blur-[20px]",
+                "h-[calc(100vh-48px)]",
+                isCollapsed ? "w-[88px] items-center px-2" : "w-[280px] px-5"
             )}
         >
             <ToggleButton isCollapsed={isCollapsed} toggle={() => setIsCollapsed(!isCollapsed)} />
             <CompanySwitcher isCollapsed={isCollapsed} />
 
-            <div className="flex-1 flex flex-col gap-8 overflow-y-auto overflow-x-hidden w-full no-scrollbar">
+            <div className="flex-1 flex flex-col justify-between gap-8 overflow-y-auto overflow-x-hidden w-full no-scrollbar">
                 <NavigationSection isCollapsed={isCollapsed} pathname={pathname} />
                 <MessagesSection isCollapsed={isCollapsed} collaborators={MOCK_COLLABORATORS} />
             </div>
@@ -71,16 +72,16 @@ function ToggleButton({ isCollapsed, toggle }: { isCollapsed: boolean; toggle: (
 function CompanySwitcher({ isCollapsed }: { isCollapsed: boolean }) {
     return (
         <div className={cn(
-            "flex items-center gap-3 p-3 rounded-[20px] cursor-pointer transition-colors hover:bg-white/40 active:bg-white/60",
+            "flex items-center gap-3 p-3 rounded-[20px] cursor-pointer transition-colors hover:bg-white/40 bg-white/20 active:bg-white/60 border border-white/30 p-3",
             isCollapsed && "justify-center p-0 hover:bg-transparent"
         )}>
-            <div className="w-8 h-8 flex items-center justify-center bg-[#2D3436] text-white rounded-lg font-bold text-xs shrink-0">
+            <div className="w-8 h-8 flex items-center justify-center bg-[#000] text-white rounded-lg font-bold text-xs shrink-0">
                 AV
             </div>
             {!isCollapsed && (
-                <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap animate-in fade-in slide-in-from-left-1 duration-300">
-                    <span className="font-semibold text-sm text-[#2D3436]">Avoice Company</span>
-                    <ChevronDown size={16} className="text-gray-400" />
+                <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap animate-in fade-in slide-in-from-left-1 duration-300 ">
+                    <span className="font-semibold text-sm text-[#000]">Avoice Company</span>
+                    <ChevronDown size={16} className="text-gray-800" />
                 </div>
             )}
         </div>
@@ -129,7 +130,7 @@ function MessagesSection({ isCollapsed, collaborators }: { isCollapsed: boolean;
             {!isCollapsed && (
                 <div className="flex justify-between items-center pr-2 animate-in fade-in slide-in-from-left-1 duration-300">
                     <p className="text-[12px] font-medium text-[#242220] uppercase tracking-wider pl-4 opacity-50 whitespace-nowrap">MESSAGES</p>
-                    <button className="p-1 rounded hover:bg-black/5 text-gray-400 hover:text-orange-500 transition-colors">
+                    <button className="p-1 rounded hover:bg-black/5 text-gray-600 hover:text-orange-500 transition-colors">
                         <Plus size={16} />
                     </button>
                 </div>
@@ -153,7 +154,7 @@ function MessagesSection({ isCollapsed, collaborators }: { isCollapsed: boolean;
 
 function UserProfile({ isCollapsed }: { isCollapsed: boolean }) {
     return (
-        <div className="mt-auto flex items-center gap-3 p-3 bg-white/30 rounded-3xl cursor-pointer hover:bg-white/50 transition-all relative group">
+        <div className="mt-auto flex items-center gap-3 p-3 bg-white/30 rounded-3xl cursor-pointer hover:bg-white/50 transition-all relative group border border-white/30 p-1">
             <img
                 src="https://ui-avatars.com/api/?name=Wendell+Neander&background=000"
                 alt="User"
