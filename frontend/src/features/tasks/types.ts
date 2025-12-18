@@ -29,7 +29,7 @@ export interface Task {
     dueDate?: string;
 }
 
-export interface TaskColumn {
+export interface TaskColumnData {
     id: TaskStatus;
     title: string;
     tasks: Task[];

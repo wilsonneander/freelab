@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { CalendarEvent } from '@/types';
+import { CalendarEvent } from '../types';
 
 interface EventsListProps {
     events: CalendarEvent[];

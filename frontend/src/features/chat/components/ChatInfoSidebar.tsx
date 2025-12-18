@@ -1,6 +1,6 @@
 'use client';
 
-import { Conversation, User } from '@/features/chat/types';
+import { Conversation, User } from '../types';
 import Image from 'next/image';
 import { X, Image as ImageIcon, FileText, Link as LinkIcon, MoreHorizontal } from 'lucide-react';
 
@@ -10,7 +10,7 @@ interface ChatInfoSidebarProps {
     onClose: () => void;
 }
 
-export default function ChatInfoSidebar({ conversation, currentUser, onClose }: ChatInfoSidebarProps) {
+export function ChatInfoSidebar({ conversation, currentUser, onClose }: ChatInfoSidebarProps) {
     const isGroup = conversation.type === 'group';
     const otherUser = !isGroup ? conversation.participants.find(p => p.id !== currentUser.id) : null;
 

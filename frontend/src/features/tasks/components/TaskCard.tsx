@@ -1,8 +1,8 @@
 'use client';
 
-import { Task } from '@/types/tasks';
+import { Task } from '../types';
 import { Draggable } from '@hello-pangea/dnd';
-import { Paperclip, MessageSquare, MoreHorizontal, Calendar } from 'lucide-react';
+import { Paperclip, MessageSquare, MoreHorizontal } from 'lucide-react';
 import Image from 'next/image';
 
 interface TaskCardProps {
@@ -13,12 +13,10 @@ interface TaskCardProps {
 
 // Mock user data for avatars (In a real app, this would come from a store or context)
 const getUserAvatar = (id: string) => {
-    // Generate a consistent random-ish avatar based on ID
-    const num = parseInt(id.replace(/\D/g, '')) || 1;
     return `https://i.pravatar.cc/150?u=${id}`;
 };
 
-export default function TaskCard({ task, index, onClick }: TaskCardProps) {
+export function TaskCard({ task, index, onClick }: TaskCardProps) {
     return (
         <Draggable draggableId={task.id} index={index}>
             {(provided, snapshot) => (

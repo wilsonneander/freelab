@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { ChartDataPoint } from '@/types';
+import { ChartDataPoint } from '../types';
 
 interface RevenueChartProps {
     data: ChartDataPoint[];

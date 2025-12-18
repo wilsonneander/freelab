@@ -1,7 +1,7 @@
 'use client';
 
-import Drawer from '@/components/ui/Drawer';
-import { Task } from '@/types/tasks';
+import { Drawer } from '@/components/ui';
+import { Task } from '../types';
 import { Calendar, Paperclip, MessageSquare, Clock, CheckCircle2, MoreHorizontal } from 'lucide-react';
 import Image from 'next/image';
 
@@ -13,7 +13,7 @@ interface TaskDetailDrawerProps {
 
 const getUserAvatar = (id: string) => `https://i.pravatar.cc/150?u=${id}`;
 
-export default function TaskDetailDrawer({ isOpen, onClose, task }: TaskDetailDrawerProps) {
+export function TaskDetailDrawer({ isOpen, onClose, task }: TaskDetailDrawerProps) {
     if (!task) return null;
 
     return (

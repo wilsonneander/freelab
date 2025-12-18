@@ -2,12 +2,18 @@
 
 import React from 'react';
 import { Folder, Users, CheckSquare, TrendingUp } from 'lucide-react';
-import { StatCard } from '@/features/dashboard/components/StatCard';
-import { RevenueChart } from '@/features/dashboard/components/RevenueChart';
-import { CollaboratorsList } from '@/features/dashboard/components/CollaboratorsList';
-import { EventsList } from '@/features/dashboard/components/EventsList';
-import { TimerWidget, MeetingCard } from '@/features/dashboard/components/Widgets';
-import { REVENUE_CHART_DATA, COLLABORATORS, CALENDAR_EVENTS, DASHBOARD_STATS } from '@/features/dashboard/services/mockData';
+import {
+  StatCard,
+  RevenueChart,
+  CollaboratorsList,
+  EventsList,
+  TimerWidget,
+  MeetingCard,
+  REVENUE_CHART_DATA,
+  COLLABORATORS,
+  CALENDAR_EVENTS,
+  DASHBOARD_STATS
+} from '@/features/dashboard';
 
 const ICON_MAP: Record<string, any> = {
   Folder, Users, CheckSquare, TrendingUp

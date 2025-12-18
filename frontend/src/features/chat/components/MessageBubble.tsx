@@ -1,6 +1,6 @@
 'use client';
 
-import { Attachment, Message, User } from '@/features/chat/types';
+import { Attachment, Message, User } from '../types';
 import Image from 'next/image';
 import { Paperclip, Download, Smile, Play } from 'lucide-react';
 
@@ -11,7 +11,7 @@ interface MessageBubbleProps {
     showSenderName?: boolean;
 }
 
-export default function MessageBubble({ message, isOwn, sender, showSenderName }: MessageBubbleProps) {
+export function MessageBubble({ message, isOwn, sender, showSenderName }: MessageBubbleProps) {
     return (
         <div className={`flex w-full ${isOwn ? 'justify-end' : 'justify-start'} mb-4 group`}>
             <div className={`flex max-w-[70%] ${isOwn ? 'flex-row-reverse' : 'flex-row'} items-end gap-2`}>

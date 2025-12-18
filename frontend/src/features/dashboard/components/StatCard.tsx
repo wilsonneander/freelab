@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { StatCardProps } from '@/types';
+import { StatCardProps } from '../types';
 
 export function StatCard({
     title,

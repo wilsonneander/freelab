@@ -1,16 +1,16 @@
 'use client';
 
 import { Droppable } from '@hello-pangea/dnd';
-import TaskCard from './TaskCard';
-import { TaskColumn as ITaskColumn, Task } from '@/types/tasks';
+import { TaskCard } from './TaskCard';
+import { TaskColumnData, Task } from '../types';
 import { Plus } from 'lucide-react';
 
 interface TaskColumnProps {
-    column: ITaskColumn;
+    column: TaskColumnData;
     onTaskClick: (task: Task) => void;
 }
 
-export default function TaskColumn({ column, onTaskClick }: TaskColumnProps) {
+export function TaskColumn({ column, onTaskClick }: TaskColumnProps) {
     return (
         <div className="flex flex-col min-w-[320px] w-[320px] h-full shrink-0">
             {/* Header */}

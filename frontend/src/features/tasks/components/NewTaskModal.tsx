@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Modal from '@/components/ui/Modal';
-import { TaskPriority, TaskStatus } from '@/types/tasks';
+import { Modal } from '@/components/ui';
+import { TaskPriority, TaskStatus } from '../types';
 import { User, Calendar, Tag, Image as ImageIcon } from 'lucide-react';
 
 interface NewTaskModalProps {
@@ -11,7 +11,7 @@ interface NewTaskModalProps {
     onAddTask: (task: any) => void;
 }
 
-export default function NewTaskModal({ isOpen, onClose, onAddTask }: NewTaskModalProps) {
+export function NewTaskModal({ isOpen, onClose, onAddTask }: NewTaskModalProps) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState<TaskPriority>('medium');

@@ -2,7 +2,7 @@
 
 import { Paperclip, Mic, Send, Smile } from 'lucide-react';
 
-export default function ChatInput() {
+export function ChatInput() {
     return (
         <div className="p-4 bg-white/40 backdrop-blur-md border-t border-white/60 shrink-0">
             <div className="relative flex items-end gap-2 bg-white/70 border border-white/80 p-2 rounded-[24px] shadow-sm">

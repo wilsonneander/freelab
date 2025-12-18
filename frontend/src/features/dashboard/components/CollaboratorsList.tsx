@@ -1,5 +1,5 @@
 import { MoreVertical } from 'lucide-react';
-import { Collaborator } from '@/types';
+import { Collaborator } from '../types';
 
 interface CollaboratorsListProps {
     items: Collaborator[];

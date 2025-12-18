@@ -1,4 +1,4 @@
-import { Task, TaskColumn } from "@/types/tasks";
+import { Task, TaskColumnData } from "../types";
 
 export const initialTasks: Task[] = [
     {
@@ -61,7 +61,7 @@ export const initialTasks: Task[] = [
     }
 ];
 
-export const initialColumns: TaskColumn[] = [
+export const initialColumns: TaskColumnData[] = [
     { id: 'todo', title: 'A Fazer', tasks: [] },
     { id: 'in-progress', title: 'Em Progresso', tasks: [] },
     { id: 'review', title: 'Em Revisão', tasks: [] },

@@ -1,7 +1,7 @@
 'use client';
 
 import { Search, Edit, Plus } from 'lucide-react';
-import { Conversation, User } from '@/features/chat/types';
+import { Conversation, User } from '../types';
 import Image from 'next/image';
 
 interface ChatSidebarProps {
@@ -33,7 +33,7 @@ const getStatusColor = (status?: string) => {
     }
 };
 
-export default function ChatSidebar({ conversations, currentUser, onSelectConversation, activeConversationId }: ChatSidebarProps) {
+export function ChatSidebar({ conversations, currentUser, onSelectConversation, activeConversationId }: ChatSidebarProps) {
     return (
         <div className="flex flex-col w-full md:w-[320px] h-full bg-[#FFF5F0]/40 backdrop-blur-xl border-r border-white/60 shrink-0">
             {/* Header */}

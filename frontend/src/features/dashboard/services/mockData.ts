@@ -1,4 +1,4 @@
-import { ChartDataPoint, Collaborator, CalendarEvent } from '@/types';
+import { ChartDataPoint, Collaborator, CalendarEvent } from '../types';
 
 export const DASHBOARD_STATS = [
     { title: "Total Projects", value: "38", subtitle: "Updated 1 week ago", icon: 'Folder', variant: "orange", tags: ['Mobile', '2+ years exp.'] },

@@ -1,11 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import ChatSidebar from '@/features/chat/components/ChatSidebar';
-import ChatInput from '@/features/chat/components/ChatInput';
-import MessageBubble from '@/features/chat/components/MessageBubble';
-import ChatInfoSidebar from '@/features/chat/components/ChatInfoSidebar';
-import { MOCK_CONVERSATIONS, MOCK_MESSAGES, MOCK_USERS } from '@/features/chat/data/mockData';
+import {
+    ChatSidebar,
+    ChatInput,
+    MessageBubble,
+    ChatInfoSidebar,
+    MOCK_CONVERSATIONS,
+    MOCK_MESSAGES,
+    MOCK_USERS
+} from '@/features/chat';
 import { Phone, Video, Info, MoreVertical } from 'lucide-react';
 import Image from 'next/image';
 

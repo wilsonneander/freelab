@@ -1,16 +1,16 @@
 'use client';
 
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import TaskColumn from './TaskColumn';
-import { Task, TaskColumn as ITaskColumn } from '@/types/tasks';
+import { TaskColumn } from './TaskColumn';
+import { Task, TaskColumnData } from '../types';
 
 interface TaskBoardProps {
-    columns: ITaskColumn[];
-    setColumns: (cols: ITaskColumn[]) => void;
+    columns: TaskColumnData[];
+    setColumns: (cols: TaskColumnData[]) => void;
     onTaskClick: (task: Task) => void;
 }
 
-export default function TaskBoard({ columns, setColumns, onTaskClick }: TaskBoardProps) {
+export function TaskBoard({ columns, setColumns, onTaskClick }: TaskBoardProps) {
 
     const onDragEnd = (result: DropResult) => {
         const { destination, source } = result;

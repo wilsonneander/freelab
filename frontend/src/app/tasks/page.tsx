@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { Filter, Plus, ChevronRight, Search, ListFilter } from 'lucide-react';
-import TaskBoard from '@/features/tasks/components/TaskBoard';
-import NewTaskModal from '@/features/tasks/components/NewTaskModal';
-import TaskDetailDrawer from '@/features/tasks/components/TaskDetailDrawer';
-import { initialColumns, initialTasks } from '@/features/tasks/data/initialData';
-import { TaskColumn, Task } from '@/types/tasks';
+import {
+    TaskBoard,
+    NewTaskModal,
+    TaskDetailDrawer,
+    initialColumns,
+    initialTasks,
+    Task,
+    TaskColumnData
+} from '@/features/tasks';
 
 export default function TasksPage() {
-    const [columns, setColumns] = useState<TaskColumn[]>([]);
+    const [columns, setColumns] = useState<TaskColumnData[]>([]);
     const [isNewTaskOpen, setIsNewTaskOpen] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
