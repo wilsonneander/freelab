@@ -4,6 +4,10 @@ import { Search, Edit, Plus } from 'lucide-react';
 import { Conversation, User } from '../types';
 import Image from 'next/image';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { searchSchema, type SearchInput } from '@/lib/validation/common.schema';
+
 interface ChatSidebarProps {
     conversations: Conversation[];
     currentUser: User;
@@ -11,10 +15,10 @@ interface ChatSidebarProps {
     activeConversationId?: string;
 }
 
-const getConversationName = (conv: Conversation, currentUserId: string) => {
-    if (conv.type === 'group') return conv.name;
+const getConversationName = (conv: Conversation, currentUserId: string): string => {
+    if (conv.type === 'group') return conv.name || 'Grupo sem nome';
     const otherUser = conv.participants.find(p => p.id !== currentUserId);
-    return otherUser?.name || 'Unknown User';
+    return otherUser?.name || 'Usuário Desconhecido';
 };
 
 const getConversationImage = (conv: Conversation, currentUserId: string) => {
@@ -27,13 +31,25 @@ const getStatusColor = (status?: string) => {
     switch (status) {
         case 'online': return 'bg-green-500';
         case 'busy': return 'bg-red-500';
-        case 'meeting': return 'bg-red-500'; // Or generic red
+        case 'meeting': return 'bg-red-500';
         case 'offline': return 'bg-gray-400';
         default: return 'bg-gray-400';
     }
 };
 
 export function ChatSidebar({ conversations, currentUser, onSelectConversation, activeConversationId }: ChatSidebarProps) {
+    const { register, watch } = useForm<SearchInput>({
+        resolver: zodResolver(searchSchema),
+        defaultValues: { query: '' }
+    });
+
+    const searchQuery = watch('query');
+
+    const filteredConversations = conversations.filter(conv => {
+        const name = getConversationName(conv, currentUser.id);
+        return name.toLowerCase().includes((searchQuery ?? '').toLowerCase());
+    });
+
     return (
         <div className="flex flex-col w-full md:w-[320px] h-full bg-[#FFF5F0]/40 backdrop-blur-xl border-r border-white/60 shrink-0">
             {/* Header */}
@@ -49,6 +65,7 @@ export function ChatSidebar({ conversations, currentUser, onSelectConversation, 
                     <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
+                        {...register('query')}
                         placeholder="Search chats..."
                         className="w-full pl-10 pr-4 py-3 bg-white/60 rounded-xl border border-white/60 focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm placeholder-gray-400 transition-all font-medium"
                     />
@@ -58,7 +75,7 @@ export function ChatSidebar({ conversations, currentUser, onSelectConversation, 
             {/* List */}
             <div className="flex-1 overflow-y-auto no-scrollbar px-3">
                 <div className="flex flex-col gap-1 pb-4">
-                    {conversations.map(conv => {
+                    {filteredConversations.map(conv => {
                         const name = getConversationName(conv, currentUser.id);
                         const image = getConversationImage(conv, currentUser.id);
                         const isActive = conv.id === activeConversationId;

@@ -12,10 +12,21 @@ import {
     TaskColumnData
 } from '@/features/tasks';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { searchSchema, type SearchInput } from '@/lib/validation/common.schema';
+
 export default function TasksPage() {
     const [columns, setColumns] = useState<TaskColumnData[]>([]);
     const [isNewTaskOpen, setIsNewTaskOpen] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
+    const { register, watch } = useForm<SearchInput>({
+        resolver: zodResolver(searchSchema),
+        defaultValues: { query: '' }
+    });
+
+    const searchQuery = watch('query');
 
     // Initialize Data
     useEffect(() => {
@@ -25,6 +36,15 @@ export default function TasksPage() {
         }));
         setColumns(cols);
     }, []);
+
+    // Filter tasks based on searchQuery
+    const filteredColumns = columns.map(col => ({
+        ...col,
+        tasks: col.tasks.filter(task =>
+            task.title.toLowerCase().includes((searchQuery ?? '').toLowerCase()) ||
+            task.description.toLowerCase().includes((searchQuery ?? '').toLowerCase())
+        )
+    }));
 
     const handleAddTask = (taskData: any) => {
         const newTask: Task = {
@@ -51,15 +71,6 @@ export default function TasksPage() {
         <div className="flex flex-col h-full gap-4 pt-2">
             {/* Header Section */}
             <header className="flex flex-col gap-6 shrink-0 z-10 w-full">
-                {/* Max-width to avoid overlapping with Global Header if Absolute, 
-                    OR just rely on layout. If Layout is Flex Column, this is below header. 
-                    If Layout is Absolute Header, this needs to not overlap. 
-                    I'll assume Absolute Header in Layout, so I leave space or just flow normally if Title is Left. */}
-
-                {/* Top Bar (Breadcrumb) - Using absolute negative top margin to align with "Global Header" area if needed, 
-                    OR just normal flow if we want it below. 
-                    User wanted "Page Title" (H2) and Breadcrumb. */}
-
                 <div className="flex items-center text-sm text-gray-500 font-medium tracking-wide">
                     <span className="hover:text-primary cursor-pointer transition-colors">Projeto Avoice</span>
                     <ChevronRight size={14} className="mx-2 text-gray-400" />
@@ -67,7 +78,7 @@ export default function TasksPage() {
                 </div>
 
                 {/* Controls Bar */}
-                <div className="flex items-center justify-between bg-white/40 backdrop-blur-md p-4 rounded-[24px] border border-white/60 shadow-sm">
+                <div className="flex items-center justify-between bg-white/40 backdrop-blur-md p-4 rounded-[24px] border border-white/60 shadow-m">
                     <h1 className="text-2xl font-bold text-gray-800 px-2">Tasks</h1>
 
                     <div className="flex items-center gap-3">
@@ -76,6 +87,7 @@ export default function TasksPage() {
                             <Search size={18} className="text-gray-400" />
                             <input
                                 type="text"
+                                {...register('query')}
                                 placeholder="Filtrar tarefas..."
                                 className="bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 w-full text-sm font-medium"
                             />
@@ -104,7 +116,7 @@ export default function TasksPage() {
             {/* Kanban Board Area */}
             <div className="flex-1 overflow-hidden mt-2">
                 <TaskBoard
-                    columns={columns}
+                    columns={filteredColumns}
                     setColumns={setColumns}
                     onTaskClick={handleTaskClick}
                 />

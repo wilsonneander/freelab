@@ -43,6 +43,11 @@ export default function ChatPage() {
 
     const headerInfo = getHeaderInfo();
 
+    const handleSendMessage = (message: string) => {
+        console.log('Sending message:', message);
+        // In a real app, this would call an API or update state
+    };
+
     return (
         <div className="flex h-[calc(100%-20px)] mt-[60px] w-full overflow-hidden rounded-[32px] bg-white/20 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-white/40 glass-container">
 
@@ -116,7 +121,7 @@ export default function ChatPage() {
                 </div>
 
                 {/* Input Area */}
-                <ChatInput />
+                <ChatInput onSendMessage={handleSendMessage} />
             </div>
 
             {/* Right Info Sidebar */}
