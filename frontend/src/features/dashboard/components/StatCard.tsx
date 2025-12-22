@@ -31,23 +31,21 @@ export function StatCard({
             </div>
 
             <div>
-                <h3 className="text-sm font-semibold mb-0.5">{title}</h3>
-                <small className={cn("text-[10px] block leading-tight opacity-80", isOrange ? "text-white" : "text-gray-400")}>{subtitle}</small>
+                <h3 className="text-sm font-black mb-0.5">{title}</h3>
+                <small className={cn("text-[10px] block leading-tight opacity-80 font-bold", isOrange ? "text-white" : "text-[#4B4B4B]")}>{subtitle}</small>
             </div>
 
             <div className="flex items-end justify-between mt-1">
-                <div className="text-2xl font-bold leading-none">
+                <div className="text-2xl font-black leading-none tracking-tight">
                     {value} <span className={cn("text-[10px] font-normal ml-0.5", isOrange ? "text-white" : "text-gray-400")}>apps</span>
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex gap-1.5 line-clamp-1">
                     {tags.map((tag: string, i: number) => (
                         <span key={i} className={cn(
-                            "text-[10px] px-3 py-1 rounded-full border font-medium",
+                            "text-[10px] px-3 py-1 rounded-full border font-black uppercase tracking-wider",
                             isOrange
                                 ? "bg-white/20 text-white border-white/40"
-                                : (i === 0
-                                    ? "bg-white text-gray-700 border-[#FF9F43]"
-                                    : "bg-transparent text-gray-500 border-[#FF9F43]")
+                                : "bg-orange-50/50 text-[#FF9F43] border-[#FF9F43]/20"
                         )}>
                             {tag}
                         </span>

@@ -11,18 +11,39 @@ interface TaskColumnProps {
 }
 
 export function TaskColumn({ column, onTaskClick }: TaskColumnProps) {
+    const getStatusColor = (statusId: string) => {
+        switch (statusId) {
+            case 'todo': return '#FF4785'; // Rosa
+            case 'in-progress': return '#FF9F1C'; // Amarelo/Laranja claro
+            case 'review': return '#F15BB5'; // Laranja/Rosa choque
+            case 'done': return '#00C49A'; // Verde
+            default: return '#cbd5e1';
+        }
+    };
+
+    const getStatusBG = (statusId: string) => {
+        switch (statusId) {
+            case 'todo': return 'bg-[#FF4785]';
+            case 'in-progress': return 'bg-[#FF9F1C]';
+            case 'review': return 'bg-[#F15BB5]';
+            case 'done': return 'bg-[#00C49A]';
+            default: return 'bg-gray-400';
+        }
+    };
+
     return (
-        <div className="flex flex-col min-w-[320px] w-[320px] h-full shrink-0">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-5 pl-1 pr-4">
-                <div className="flex items-center gap-3">
-                    <h2 className="text-[#2D3436] font-semibold text-[17px] tracking-tight">{column.title}</h2>
-                    <span className="bg-white/40 text-gray-500 text-xs px-2.5 py-1 rounded-full font-medium border border-white/40 shadow-sm backdrop-blur-sm">
+        <div className="flex flex-col min-w-[340px] w-[340px] h-full shrink-0">
+            {/* Header - Status Pill */}
+            <div className="flex items-center justify-between mb-6 px-1">
+                <div className="flex items-center gap-2 px-4 py-2 border border-white rounded-full bg-white/10 backdrop-blur-sm shadow-sm transition-all hover:bg-white/20">
+                    <span className={`w-2.5 h-2.5 rounded-full ${getStatusBG(column.id)} ring-4 ring-white/20`} />
+                    <h2 className="text-black font-black text-sm tracking-tight capitalize">{column.title}</h2>
+                    <span className="ml-1 text-[#4B4B4B] text-xs font-bold bg-white/40 px-2 py-0.5 rounded-full border border-white/40">
                         {column.tasks.length}
                     </span>
                 </div>
-                <button className="text-gray-400 hover:text-primary transition-colors p-1 rounded-md hover:bg-orange-50">
-                    <Plus size={18} />
+                <button className="btn-plus">
+                    <Plus size={20} />
                 </button>
             </div>
 

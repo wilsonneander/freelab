@@ -8,6 +8,7 @@ export const createTaskSchema = z.object({
   description: z.string().max(1000),
   status: taskStatusSchema,
   priority: taskPrioritySchema,
+  area: z.string().min(1, 'A área é obrigatória'),
   collaboratorIds: z.array(z.string()),
   attachments: z.array(z.any()),
   commentsCount: z.number(),

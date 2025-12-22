@@ -62,7 +62,7 @@ function ToggleButton({ isCollapsed, toggle }: { isCollapsed: boolean; toggle: (
     return (
         <button
             onClick={toggle}
-            className="absolute top-100 -right-3 w-6 h-6 bg-white border border-black/10 rounded-full flex items-center justify-center cursor-pointer z-10 text-gray-400 hover:scale-110 hover:text-orange-500 transition-all shadow-sm"
+            className="absolute top-100 -right-3 w-6 h-6 bg-white border border-black/10 rounded-full flex items-center justify-center cursor-pointer z-10 text-orange-500 hover:scale-110 hover:text-orange-500 transition-all shadow-sm"
         >
             {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
         </button>

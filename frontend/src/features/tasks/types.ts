@@ -21,6 +21,7 @@ export interface Task {
     description: string;
     status: TaskStatus;
     priority: TaskPriority;
+    area: string; // UX Design, Desenvolvimento, Social Media, etc.
     coverImage?: string;
     collaboratorIds: string[]; // references User.id
     attachments: TaskAttachment[];

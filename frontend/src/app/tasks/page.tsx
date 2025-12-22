@@ -5,7 +5,7 @@ import { Filter, Plus, ChevronRight, Search, ListFilter } from 'lucide-react';
 import {
     TaskBoard,
     NewTaskModal,
-    TaskDetailDrawer,
+    TaskDetailModal,
     initialColumns,
     initialTasks,
     Task,
@@ -68,43 +68,56 @@ export default function TasksPage() {
     };
 
     return (
-        <div className="flex flex-col h-full gap-4 pt-2">
+        <div className="flex flex-col h-full gap-5 pt-8">
             {/* Header Section */}
-            <header className="flex flex-col gap-6 shrink-0 z-10 w-full">
-                <div className="flex items-center text-sm text-gray-500 font-medium tracking-wide">
-                    <span className="hover:text-primary cursor-pointer transition-colors">Projeto Avoice</span>
-                    <ChevronRight size={14} className="mx-2 text-gray-400" />
-                    <span className="text-gray-800">Tasks Board</span>
+            <header className="flex flex-col shrink-0 z-10 w-full mb-2">
+                {/* Breadcrumb */}
+                <div className="flex items-center text-sm text-[#fff] font-semibold tracking-wide mb-4">
+                    <span className="hover:text-primary cursor-pointer transition-colors">CreativeSync Hub</span>
+                    <ChevronRight size={14} className="mx-2 text-black" />
+                    <span className="text-black font-black">Tarefas</span>
                 </div>
 
-                {/* Controls Bar */}
-                <div className="flex items-center justify-between bg-white/40 backdrop-blur-md p-4 rounded-[24px] border border-white/60 shadow-m">
-                    <h1 className="text-2xl font-bold text-gray-800 px-2">Tasks</h1>
+                {/* Main Glass Header */}
+                <div className="flex items-center justify-between bg-white border border-white p-5 rounded-[24px] shadow-sm">
+                    <div className="flex items-center gap-4">
+                        <h1 className="text-2xl font-black text-black">Tarefas</h1>
+                        <div className="flex items-center bg-gray-50 border border-gray-100 rounded-full px-3 py-1 gap-2">
+                            <span className="flex w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                            <span className="text-xs font-bold text-[#4B4B4B] uppercase tracking-wider">Live Board</span>
+                        </div>
+                    </div>
 
                     <div className="flex items-center gap-3">
+                        {/* Status Pills Visualization (Filter/List switcher) */}
+                        <div className="flex bg-gray-100/50 p-1 rounded-xl mr-2">
+                            <button className="flex items-center gap-2 px-4 py-1.5 bg-white shadow-sm rounded-lg text-sm font-bold text-black transition-all">
+                                <Search size={16} />
+                                <span>Kanban</span>
+                            </button>
+                            <button className="flex items-center gap-2 px-4 py-1.5 text-sm font-bold text-[#4B4B4B] hover:text-black transition-all">
+                                <ListFilter size={16} />
+                                <span>Lista</span>
+                            </button>
+                        </div>
+
                         {/* Local Task Search */}
-                        <div className="flex items-center gap-2 bg-white/60 border border-white/60 rounded-xl px-4 py-2 w-[240px] shadow-sm focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                        <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 w-[240px] focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-inner">
                             <Search size={18} className="text-gray-400" />
                             <input
                                 type="text"
                                 {...register('query')}
                                 placeholder="Filtrar tarefas..."
-                                className="bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 w-full text-sm font-medium"
+                                className="bg-transparent border-none outline-none text-black placeholder-gray-400 w-full text-sm font-bold"
                             />
                         </div>
 
-                        <div className="h-8 w-px bg-gray-300/50 mx-1" />
-
-                        {/* Filters */}
-                        <button className="flex items-center gap-2 px-4 py-2 bg-white/60 border border-white/60 rounded-xl text-gray-600 font-medium hover:bg-white hover:text-primary transition-all shadow-sm">
-                            <ListFilter size={18} />
-                            <span className="text-sm">Filtros</span>
-                        </button>
+                        <div className="h-8 w-px bg-gray-200 mx-1" />
 
                         {/* Add Button */}
                         <button
                             onClick={() => setIsNewTaskOpen(true)}
-                            className="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-xl font-medium shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all"
+                            className="btn-primary"
                         >
                             <Plus size={20} />
                             <span>Nova Tarefa</span>
@@ -113,14 +126,14 @@ export default function TasksPage() {
                 </div>
             </header>
 
-            {/* Kanban Board Area */}
-            <div className="flex-1 overflow-hidden mt-2">
+            {/* Kanban Board Area - Container Pai (Glass) */}
+            <main className="flex-1 bg-white/60 rounded-[32px] border border-white p-6 overflow-hidden shadow-xl shadow-black/5">
                 <TaskBoard
                     columns={filteredColumns}
                     setColumns={setColumns}
                     onTaskClick={handleTaskClick}
                 />
-            </div>
+            </main>
 
             {/* Modals & Drawers */}
             <NewTaskModal
@@ -129,7 +142,7 @@ export default function TasksPage() {
                 onAddTask={handleAddTask}
             />
 
-            <TaskDetailDrawer
+            <TaskDetailModal
                 isOpen={!!selectedTask}
                 onClose={() => setSelectedTask(null)}
                 task={selectedTask}

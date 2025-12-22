@@ -28,9 +28,9 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm transition-all text-[#2D3436]">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all text-[#2D3436]">
             <div
-                className={`flex flex-col w-full ${maxWidth} max-h-[90vh] bg-[#FDFDFD]/80 backdrop-blur-2xl border border-white/60 rounded-[32px] shadow-[0_30px_60px_-10px_rgba(0,0,0,0.15)] overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
+                className={`flex flex-col w-full ${maxWidth} max-h-[90vh] bg-white/70 backdrop-blur-[40px] border border-white rounded-[24px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden animate-in fade-in zoom-in-95 duration-300 ease-out`}
             >
                 <div className="flex items-center justify-between px-8 py-6 border-b border-gray-100/50 shrink-0">
                     <h3 className="text-xl font-semibold text-gray-800 tracking-tight">{title}</h3>
